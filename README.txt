@@ -1,142 +1,115 @@
+<p align="center">
+  <img src="images/main.png" alt="Bosch ME7.5 MultiMap LC Patcher" width="900">
+</p>
+
 # 🚀 Bosch ME7.5 MultiMap LC Patcher
 
-<p align="center">
-
-### Selective Launch Control for Bosch ME7.5 MultiMap / MapSwitch
-
-**Per-Bank Launch Control • Clutch Activation • Automatic ECU Detection • XDF Generation • Checksum Correction**
-
-</p>
+> 🔥 **Selective Launch Control for Bosch ME7.5 MultiMap / MapSwitch**
+>
+> 🔀 Per-Bank Launch Control  
+> 🦶 Clutch Activation  
+> 🧠 Automatic ECU Detection  
+> 📊 Automatic XDF Generation  
+> ✅ Automatic Checksum Correction  
 
 <p align="center">
   <a href="https://github.com/LDRXN/Bosch-ME7.5-MultiMap-LC-Patcher-">
-    <img src="https://img.shields.io/badge/GitHub-LDRXN-181717?style=for-the-badge&logo=github" alt="GitHub">
+    <img src="https://img.shields.io/badge/GitHub-LDRXN-181717?style=for-the-badge&logo=github">
   </a>
-  <img src="https://img.shields.io/badge/Bosch-ME7.5-blue?style=for-the-badge" alt="Bosch ME7.5">
-  <img src="https://img.shields.io/badge/MultiMap-2%2F3%2F4%20Banks-success?style=for-the-badge" alt="MultiMap">
-  <img src="https://img.shields.io/badge/Python-PySide6-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python PySide6">
+  <img src="https://img.shields.io/badge/Bosch-ME7.5-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/MultiMap-Selective%20LC-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Python-PySide6-3776AB?style=for-the-badge&logo=python&logoColor=white">
 </p>
 
 ---
 
 ## 🚀 About
 
-**Bosch ME7.5 MultiMap LC Patcher** is a graphical tool for adding **selective Launch Control** to Bosch ME7.5 **1 MB MultiMap / MapSwitch firmware**.
+**Bosch ME7.5 MultiMap LC Patcher** adds **selective Launch Control** to an existing Bosch ME7.5 **1 MB MultiMap / MapSwitch firmware**.
 
-Unlike a normal Launch Control patch that is active globally, this tool allows Launch Control to be enabled only on selected MultiMap banks.
+Instead of enabling Launch Control globally, the program allows LC to be enabled only on selected MultiMap banks.
 
 Example:
 
 ```text
-BANK 1 → Original calibration     → LC OFF
-BANK 2 → Performance             → LC ON  @ 3500 RPM
-BANK 3 → Performance             → LC ON  @ 4000 RPM
-BANK 4 → Performance / Custom    → LC ON  @ 4500 RPM
+Bank 1 → Original / LC OFF
+Bank 2 → Performance / LC 3500 RPM
+Bank 3 → Performance / LC 4000 RPM
+Bank 4 → Custom / LC 4500 RPM
 ```
 
-Each enabled bank can have its own independent Launch Control configuration.
+Each enabled bank can use its own Launch Control configuration.
 
-The application automatically:
+The application automatically handles:
 
-```text
-ME7Check
-   ↓
-ECU identification
-   ↓
-ME7Info
-   ↓
-Automatic .ecu generation
-   ↓
-MultiMap CSV validation
-   ↓
-Selective LC patch
-   ↓
-Per-bank LC configuration
-   ↓
-TunerPro XDF generation
-   ↓
-me7sum
-   ↓
-FINAL _CSOK.bin
-```
+- ECU identification with **ME7Check**
+- `.ecu` generation with **ME7Info**
+- MultiMap CSV validation
+- active bank RAM detection
+- selective Launch Control installation
+- MultiMap hook integration
+- per-bank LC configuration
+- TunerPro XDF generation
+- checksum correction with **me7sum**
 
 ---
 
-# ✨ Main Features
+# ✨ Features
 
-🚀 **Selective Launch Control for MultiMap banks**
-
-🔀 **Independent LC activation for each bank**
-
-🎚️ **Independent Launch RPM for every selected bank**
-
-🦶 **Clutch-only Launch Control activation**
-
-🧠 **Automatic MultiMap CSV detection and validation**
-
-📄 **Automatic ECU identification with ME7Check**
-
-🗂️ **Automatic `.ecu` generation using ME7Info**
-
-🔍 **Automatic detection of required ME7 variables**
-
-🧩 **Automatic code-cave allocation**
-
-🔗 **Existing MultiMap runtime CALLS preservation / chaining**
-
-🛡️ **Detection of an already installed Launch Control patch**
-
-📊 **Automatic TunerPro XDF generation**
-
-✅ **Automatic checksum correction with me7sum**
-
-💾 **Original BIN is preserved**
-
-🖥️ **Modern PySide6 GUI**
-
-🐧 **Linux + Wine compatible**
+- 🚀 Selective Launch Control for MultiMap banks
+- 🔀 LC can be enabled independently for each bank
+- 🎚️ Independent Launch RPM for every selected bank
+- 🦶 Clutch-only LC activation
+- 🧠 Automatic MultiMap CSV detection
+- 📄 Automatic ME7Check analysis
+- 🗂️ Automatic `.ecu` generation using ME7Info
+- 🔍 Automatic ME7 variable detection
+- 🧩 Automatic code-cave allocation
+- 🔗 Existing MultiMap `CALLS` preservation
+- 🛡️ Detection of an already installed Launch Control patch
+- 📊 Automatic TunerPro XDF generation
+- ✅ Automatic checksum correction with me7sum
+- 💾 Original input BIN remains untouched
+- 🖥️ PySide6 graphical interface
+- 🐧 Linux + Wine support
 
 ---
 
-# 🔀 Selective MultiMap Launch Control
+# 🔀 Selective Launch Control
 
-The main purpose of this project is to make Launch Control dependent on the currently active MultiMap bank.
+The patcher uses the active MultiMap bank to decide whether Launch Control should run.
 
-For example:
+Example:
 
-```text
-┌──────────┬──────────────────────┐
-│ BANK     │ LAUNCH CONTROL       │
-├──────────┼──────────────────────┤
-│ Bank 1   │ OFF                  │
-│ Bank 2   │ ON  → 3500 RPM       │
-│ Bank 3   │ ON  → 4000 RPM       │
-│ Bank 4   │ ON  → 4500 RPM       │
-└──────────┴──────────────────────┘
-```
+| Bank | Calibration | Launch Control |
+|---|---|---|
+| Bank 1 | Original | ❌ OFF |
+| Bank 2 | Performance | ✅ 3500 RPM |
+| Bank 3 | Performance | ✅ 4000 RPM |
+| Bank 4 | Custom | ✅ 4500 RPM |
 
-The active bank is read directly from the **MultiMap runtime RAM WORD** reported in the CSV generated by the MultiMap Builder.
+The active bank is read from the **MultiMap runtime RAM WORD** stored in the CSV generated by the MultiMap Builder.
 
-The patch installs a dispatcher that checks the currently active MultiMap bank and routes execution only to the Launch Control function assigned to that bank.
+The patch installs a dispatcher which checks the current bank and runs the correct LC function only when that bank has LC enabled.
 
-If the active bank does not have Launch Control enabled, normal ECU operation continues.
+If LC is disabled for the current bank, normal ECU operation continues.
 
 ---
 
 # 🎛️ Per-Bank Configuration
 
-Every selected bank has its own configuration block.
+Every selected bank can have its own LC settings.
 
-Available parameters include:
+Available parameters:
 
 | Parameter | Description |
 |---|---|
-| 🚀 **Launch RPM** | Target engine speed for Launch Control |
-| 🚗 **Speed Threshold** | Maximum vehicle speed for LC operation |
-| 📈 **RPM Threshold** | RPM threshold used by LC/NLS logic |
-| 🦶 **Accelerator Threshold** | Minimum accelerator pedal position |
-| ⚡ **Ignition Cut Duration** | Ignition cut duration in milliseconds |
-| 🌡️ **Minimum Temperature** | Temperature value stored in the LC configuration |
+| **Launch RPM** | Launch Control engine speed |
+| **Speed Threshold** | Vehicle speed threshold |
+| **RPM Threshold** | RPM threshold used by LC/NLS logic |
+| **Accelerator Threshold** | Minimum accelerator pedal position |
+| **Ignition Cut Duration** | Ignition cut duration |
+| **Minimum Temperature** | Value stored in the LC configuration block |
 
 Example:
 
@@ -163,181 +136,93 @@ Accelerator Threshold : 70 %
 Ignition Cut Duration : 200 ms
 ```
 
-Each bank can therefore use a completely different Launch Control RPM and configuration.
-
 ---
 
 # 🦶 Activation
 
-The selective MultiMap LC implementation uses:
+Selective MultiMap Launch Control uses the **clutch input**.
 
 ```text
-CLUTCH
-  +
-Launch Control conditions
-  ↓
-LC ACTIVE
+Clutch pressed
+      +
+LC conditions fulfilled
+      ↓
+Launch Control active
 ```
 
-The clutch input is detected automatically from the ECU definition generated by **ME7Info**.
+The clutch signal is resolved automatically from the `.ecu` definition generated by ME7Info.
 
-The selective MultiMap implementation does not require a brake input for LC activation.
+No brake input is required by the selective MultiMap LC implementation.
 
 ---
 
-# 🧠 MultiMap Detection
+# 📋 Required Input
 
-The patcher does not guess the MultiMap configuration.
+The program requires two input files.
 
-It requires the CSV build log generated when the MultiMap firmware was created.
-
-Example:
+## 1. MultiMap BIN
 
 ```text
-Golf_1.8T_K04_064_MAPSWITCH_4BANK_log.csv
+*.bin
 ```
 
-The application reads and validates information such as:
+The selective LC mode currently expects:
 
 ```text
-MultiMap bank count
+Bosch ME7.5
+1 MB firmware
+MultiMap / MapSwitch already installed
+```
+
+## 2. MultiMap CSV
+
+```text
+*_MAPSWITCH_*BANK_log.csv
+```
+
+The CSV must belong to the selected MultiMap BIN.
+
+It contains information required by the patcher, including:
+
+```text
+Bank count
 Bank IDs
 Active bank RAM WORD
-Runtime information
-Bank layout
+MultiMap runtime information
 ```
 
-Example:
+The `.ecu` file does **not** need to be selected manually.
 
-```text
-MultiMap detected: 4 banks
-Active bank WORD: 0x3847B0
-
-Banks:
-1
-2
-3
-4
-```
-
-Only banks reported by the MultiMap CSV can be selected.
+It is generated automatically.
 
 ---
 
-# 🧩 Runtime Integration
+# 🧠 Automatic ECU Analysis
 
-The program automatically installs the additional Selective LC runtime into free areas of the ECU firmware.
-
-The process includes:
-
-```text
-Detect existing MultiMap hook
-        │
-        ▼
-Preserve existing MultiMap CALLS
-        │
-        ▼
-Allocate dispatcher
-        │
-        ▼
-Allocate LC functions
-        │
-        ▼
-Allocate per-bank configuration
-        │
-        ▼
-Install new CALLS
-        │
-        ▼
-Verify generated patch
-```
-
-The patcher is designed to coexist with an already installed MultiMap runtime.
-
-When the existing hook already contains a MultiMap `CALLS`, the previous target is preserved and chained into the new dispatcher.
-
----
-
-# 🛡️ Patch Safety Checks
-
-Before modifying the firmware, the application performs several checks.
-
-Among them:
-
-```text
-✅ BIN must be exactly 1 MB
-
-✅ MultiMap CSV must be valid
-
-✅ At least one LC bank must be selected
-
-✅ Active bank RAM address must be available
-
-✅ Required ECU variables must exist
-
-✅ FTOMN must be found
-
-✅ Launch Control hook must be found
-
-✅ Free code areas must be available
-
-✅ Existing native LC patch is detected
-
-✅ Existing compatible Setzi LC patch is detected
-
-✅ MultiMap Selective LC marker is checked
-
-✅ Final CALLS target is verified
-
-✅ FTOMN Hard Cut modification is verified
-```
-
-If a compatible Launch Control patch is already present, the program stops instead of installing another LC implementation on top of it.
-
----
-
-# ⚡ Hard Cut
-
-The current selective Launch Control implementation uses:
-
-```text
-FTOMN = 0x00
-```
-
-for the Launch Control hard-cut strategy.
-
-The original FTOMN value and patch metadata are handled internally by the patcher.
-
----
-
-# 📄 Automatic ECU Identification
-
-After selecting the BIN file, the GUI can automatically analyze it using:
+After selecting the BIN, the program uses:
 
 ```text
 ME7Check.exe
 ```
 
-The program extracts ECU information such as:
+to identify the firmware.
+
+The GUI can display information such as:
 
 ```text
-Bosch ECU number
-Bosch software number
-VAG part number
-VAG software number
+Bosch ECU
+Bosch Software
+VAG Part Number
+VAG Software
 Engine ID
 Bootrom
 EPK
 Checksum status
 ```
 
-This information is displayed directly inside the application.
-
 ---
 
 # 🗂️ Automatic ECU Definition
-
-The user does **not** need to manually select or create an `.ecu` file.
 
 The program automatically runs:
 
@@ -345,15 +230,15 @@ The program automatically runs:
 ME7Info.exe
 ```
 
-and generates the appropriate:
+and generates the corresponding:
 
 ```text
 .ecu
 ```
 
-definition for the selected BIN.
+file.
 
-The generated definition is used to locate required ECU variables such as:
+The generated ECU definition is used to resolve required variables such as:
 
 ```text
 tsrldyn
@@ -363,11 +248,88 @@ wped / dwped
 b_kuppl
 ```
 
+No manual ECU definition selection is required.
+
 ---
 
-# 📊 Automatic TunerPro XDF
+# 🧩 MultiMap Runtime Integration
 
-After the patch is installed, the application automatically generates a matching **TunerPro XDF**.
+The patcher is designed to work with an existing MultiMap installation.
+
+Simplified process:
+
+```text
+Existing MultiMap BIN
+        │
+        ▼
+Detect MultiMap hook
+        │
+        ▼
+Read existing CALLS
+        │
+        ▼
+Preserve MultiMap runtime
+        │
+        ▼
+Install LC dispatcher
+        │
+        ├── Bank 1
+        ├── Bank 2 LC
+        ├── Bank 3 LC
+        └── Bank 4 LC
+        │
+        ▼
+Continue ECU execution
+```
+
+If the existing hook already points to the MultiMap runtime, that target is preserved and integrated into the new dispatcher.
+
+The patcher therefore does not simply overwrite the existing MultiMap runtime.
+
+---
+
+# 🛡️ Safety Checks
+
+Before modifying the BIN, the application performs multiple checks.
+
+```text
+✅ BIN size validation
+✅ MultiMap CSV validation
+✅ MultiMap bank validation
+✅ Active bank RAM validation
+✅ Required ECU variable detection
+✅ FTOMN detection
+✅ Hook detection
+✅ Free code-space detection
+✅ Existing LC patch detection
+✅ Existing Setzi-compatible patch detection
+✅ Selective LC marker detection
+✅ Final hook verification
+✅ Dispatcher target verification
+✅ FTOMN verification
+```
+
+If another compatible Launch Control implementation is already installed, the patcher stops instead of stacking another patch on top of it.
+
+---
+
+# ⚡ Hard Cut
+
+The current implementation uses:
+
+```text
+FTOMN = 0x00
+```
+
+for the Launch Control hard-cut strategy.
+
+The required FTOMN location is detected automatically.
+
+---
+
+# 📊 Automatic XDF Generation
+
+After patching, the application automatically generates a matching **TunerPro XDF**.
 
 Example:
 
@@ -375,7 +337,7 @@ Example:
 Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.xdf
 ```
 
-The XDF contains separate Launch Control categories for every selected bank.
+The XDF contains separate categories for enabled LC banks.
 
 Example:
 
@@ -385,7 +347,7 @@ Bank 3 - Launch Control
 Bank 4 - Launch Control
 ```
 
-Available LC parameters include:
+Parameters available in the generated XDF include:
 
 ```text
 Speed Threshold
@@ -396,35 +358,33 @@ Accelerator Threshold
 Minimum Temperature
 ```
 
-The generated XDF uses the actual configuration addresses allocated during the patching process.
-
-This means the XDF matches the generated BIN rather than relying on fixed hardcoded calibration addresses.
+The XDF uses the actual addresses allocated by the patcher for the generated BIN.
 
 ---
 
 # ✅ Automatic Checksum Correction
 
-After the patch has been installed, the application automatically runs:
+After the patch has been created, the application automatically runs:
 
 ```text
 me7sum.exe
 ```
 
-The raw patched file is preserved and a second checksum-corrected file is created.
+Two BIN files are retained.
 
-Example:
-
-```text
-Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.bin
-```
-
-followed by:
+### Patched BIN
 
 ```text
-Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP_CSOK.bin
+*_LC_MULTIMAP.bin
 ```
 
-The file intended for flashing is:
+### Final checksum-corrected BIN
+
+```text
+*_LC_MULTIMAP_CSOK.bin
+```
+
+The final file intended for flashing is:
 
 ```text
 *_CSOK.bin
@@ -434,184 +394,98 @@ The file intended for flashing is:
 
 # 📦 Generated Files
 
-A successful patch normally produces:
+Example:
 
 ```text
-Original_MultiMap.bin
+Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.bin
 
-Original_MultiMap_LC_MULTIMAP.bin
-Original_MultiMap_LC_MULTIMAP.xdf
-Original_MultiMap_LC_MULTIMAP_CSOK.bin
+Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.xdf
 
-Generated ECU definition:
-*.ecu
+Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP_CSOK.bin
 ```
 
-### 📁 Output description
+### `*_LC_MULTIMAP.bin`
 
-**Patched BIN**
+Patched MultiMap firmware before final checksum correction.
 
-```text
-*_LC_MULTIMAP.bin
-```
+### `*_LC_MULTIMAP.xdf`
 
-Contains the Selective MultiMap Launch Control patch before the final checksum correction.
+TunerPro definition containing the LC configuration for selected banks.
+
+### `*_LC_MULTIMAP_CSOK.bin`
+
+Final checksum-corrected firmware.
 
 ---
 
-**TunerPro XDF**
+# 🖥️ GUI Workflow
+
+Using the program is simple.
 
 ```text
-*_LC_MULTIMAP.xdf
+1. Select MultiMap BIN
+        ↓
+2. Select MultiMap CSV
+        ↓
+3. Analyze ECU
+        ↓
+4. MultiMap banks are detected
+        ↓
+5. Select LC banks
+        ↓
+6. Configure each selected bank
+        ↓
+7. Press PATCH
+        ↓
+8. LC patch is installed
+        ↓
+9. XDF is generated
+        ↓
+10. me7sum corrects checksums
+        ↓
+11. FINAL _CSOK.bin
 ```
 
-Contains the configuration parameters and addresses for every selected Launch Control bank.
+The **PATCH** button becomes available only when:
+
+- a valid BIN is selected
+- a valid MultiMap CSV is selected
+- at least one LC bank is enabled
+- `ME7Check.exe` is available
+- `ME7Info.exe` is available
+- `me7sum.exe` is available
 
 ---
 
-**Final checksum-corrected BIN**
+# 📋 Program Log
 
-```text
-*_LC_MULTIMAP_CSOK.bin
-```
+The GUI shows the patching process in the system log.
 
-Final firmware after checksum correction with `me7sum`.
-
----
-
-# 🖥️ GUI
-
-The application includes a modern Qt / PySide6 graphical interface.
-
-The normal workflow is simple:
-
-```text
-1️⃣ Select MultiMap BIN
-
-2️⃣ Select MultiMap CSV
-
-3️⃣ ECU information is analyzed
-
-4️⃣ MultiMap banks are detected
-
-5️⃣ Select banks that should have LC
-
-6️⃣ Configure LC values for each bank
-
-7️⃣ Click PATCH
-
-8️⃣ BIN + XDF are generated
-
-9️⃣ Checksums are corrected
-
-🔟 Final _CSOK.bin is created
-```
-
-The patch button is enabled only when:
-
-```text
-✔ Valid BIN selected
-✔ Valid MultiMap CSV selected
-✔ At least one bank selected
-✔ ME7Check.exe available
-✔ ME7Info.exe available
-✔ me7sum.exe available
-```
-
----
-
-# 📋 System Log
-
-The GUI displays the complete patching process inside the application.
-
-The log includes information such as:
+Example information:
 
 ```text
 ECU identification
-ME7Info generation
-CSV validation
-Detected bank count
+Generated ECU file
+MultiMap bank count
 Active bank RAM WORD
 Selected LC banks
 Hook address
-Preserved MultiMap CALLS
+Existing MultiMap CALLS
 Dispatcher address
 LC function addresses
 FTOMN address
-XDF generation
+Generated XDF
 Checksum correction
-Final output path
+Final BIN path
 ```
 
-This makes it possible to verify exactly what the patcher changed.
-
----
-
-# ⚙️ Complete Workflow
-
-```text
-┌─────────────────────┐
-│ MultiMap 1 MB BIN   │
-└──────────┬──────────┘
-           │
-           ▼
-      🔍 ME7Check
-           │
-           ├──► ECU information
-           │
-           ▼
-      🧠 ME7Info
-           │
-           ├──► Generate .ecu
-           │
-           ▼
-┌─────────────────────┐
-│ MultiMap CSV Log    │
-└──────────┬──────────┘
-           │
-           ▼
-   🔀 Detect Banks
-           │
-           ▼
-   Select LC Banks
-           │
-           ├──► Bank 1
-           ├──► Bank 2
-           ├──► Bank 3
-           └──► Bank 4
-           │
-           ▼
- Configure Each Bank
-           │
-           ▼
- Detect MultiMap Hook
-           │
-           ▼
- Preserve Existing CALLS
-           │
-           ▼
- Install LC Dispatcher
-           │
-           ▼
- Install LC Functions
-           │
-           ▼
- Generate Patched BIN
-           │
-           ├──► Generate XDF
-           │
-           ▼
-       ✅ me7sum
-           │
-           ▼
-   🚀 FINAL CSOK BIN
-```
+This makes it easier to verify the generated patch.
 
 ---
 
 # 📁 Project Structure
 
-Recommended project structure:
+Recommended structure:
 
 ```text
 Bosch-ME7.5-MultiMap-LC-Patcher-/
@@ -625,22 +499,30 @@ Bosch-ME7.5-MultiMap-LC-Patcher-/
 │
 ├── ecus/
 │
-├── README.md
-├── LICENSE
+├── images/
+│   └── main.png
 │
-└── images/
-    └── main.png
+├── README.md
+└── LICENSE
 ```
 
-The external `launch_multimap.ui` file can be edited using **Qt Designer**.
+The external:
 
-The GUI definition is also embedded in the Python application, allowing the program to continue working as a standalone Python file.
+```text
+launch_multimap.ui
+```
+
+file can be edited using **Qt Designer**.
+
+The GUI is also embedded in the Python application, so the Python file can still operate without the external UI file.
 
 ---
 
 # 🛠️ Requirements
 
-## 🐧 Linux
+## Linux
+
+Required:
 
 ```text
 Python 3.10+
@@ -653,30 +535,45 @@ me7sum.exe
 
 ### Debian / Ubuntu
 
-Recent Debian releases use PEP 668 and normally do not allow system-wide `pip install`.
-
-The recommended installation is a Python virtual environment:
+Install the required system packages:
 
 ```bash
 sudo apt update
 sudo apt install -y python3-venv wine
+```
 
+Enter the project directory:
+
+```bash
 cd Bosch-ME7.5-MultiMap-LC-Patcher-
+```
 
+Create a virtual environment:
+
+```bash
 python3 -m venv .venv
-source .venv/bin/activate
+```
 
+Activate it:
+
+```bash
+source .venv/bin/activate
+```
+
+Install PySide6:
+
+```bash
 python -m pip install --upgrade pip
 python -m pip install PySide6
 ```
 
-Run:
+Run the application:
 
 ```bash
 python Launch_MultiMap_Selective_GUI_FINAL_v3.py
 ```
 
-For future runs:
+For future use:
 
 ```bash
 cd Bosch-ME7.5-MultiMap-LC-Patcher-
@@ -684,172 +581,94 @@ source .venv/bin/activate
 python Launch_MultiMap_Selective_GUI_FINAL_v3.py
 ```
 
-Or directly:
-
-```bash
-.venv/bin/python Launch_MultiMap_Selective_GUI_FINAL_v3.py
-```
-
 ---
 
-# 📥 Required Input Files
+# 🧪 Example
 
-The GUI requires only:
-
-### 1️⃣ MultiMap BIN
-
-```text
-*.bin
-```
-
-The Selective MultiMap LC mode currently requires a:
-
-```text
-Bosch ME7.5
-1 MB firmware
-with MultiMap / MapSwitch already installed
-```
-
-### 2️⃣ MultiMap CSV
-
-```text
-*_MAPSWITCH_*BANK_log.csv
-```
-
-The CSV must correspond to the selected MultiMap BIN.
-
-The `.ecu` file does not need to be supplied manually because it is generated automatically by ME7Info.
-
----
-
-# 🔀 MultiMap Builder
-
-This project is designed to work with MultiMap firmware generated by the Bosch ME7.5 MultiMap / MapSwitch project.
-
-The MultiMap CSV is important because it contains the runtime information required by the Selective LC patcher.
-
-The BIN and CSV should always originate from the same MultiMap build.
-
----
-
-# ⚠️ Important
-
-This application modifies executable Bosch ME7.5 ECU firmware.
-
-Before flashing:
-
-✅ Always keep a verified original ECU backup.
-
-✅ Keep the original MultiMap BIN.
-
-✅ Use a CSV generated for the exact MultiMap BIN being patched.
-
-✅ Verify that ECU identification is correct.
-
-✅ Check the generated XDF.
-
-✅ Review the program log for errors.
-
-✅ Flash the checksum-corrected `_CSOK.bin`.
-
-✅ Have a recovery / boot-mode method available before testing modified ECU firmware.
-
-Incorrect ECU firmware modifications can prevent the ECU from starting or communicating normally.
-
-Launch Control / ignition-cut strategies can also increase stress on:
-
-```text
-Turbocharger
-Ignition system
-Exhaust valves
-Exhaust manifold
-Catalytic converter
-Drivetrain
-Clutch
-Transmission
-```
-
-Use appropriate calibration and hardware knowledge.
-
----
-
-# 🧪 Project Status
-
-```text
-PySide6 GUI                         ✅
-ME7Check integration                ✅
-Automatic ME7Info .ecu generation  ✅
-MultiMap CSV validation             ✅
-1 MB ME7.5 MultiMap support         ✅
-Selective LC banks                  ✅
-Per-bank Launch RPM                 ✅
-Per-bank LC configuration           ✅
-Clutch-only activation              ✅
-Existing MultiMap CALLS chaining    ✅
-Existing LC detection               ✅
-Automatic XDF generation            ✅
-Automatic me7sum correction         ✅
-Final CSOK BIN generation           ✅
-System log                          ✅
-```
-
----
-
-# 💡 Example
-
-Input:
+Input files:
 
 ```text
 Golf_1.8T_K04_064_MULTIMAP_4BANK.bin
-
 Golf_1.8T_K04_064_MAPSWITCH_4BANK_log.csv
 ```
 
 Configuration:
 
 ```text
-BANK 1 → LC OFF
+Bank 1 → LC OFF
 
-BANK 2
-Launch RPM : 3500 RPM
-Speed      : 3 km/h
-RPM Thr.   : 5500 RPM
-Pedal      : 70 %
-Cut        : 200 ms
+Bank 2
+LC RPM : 3500
 
-BANK 3
-Launch RPM : 4000 RPM
-Speed      : 3 km/h
-RPM Thr.   : 5500 RPM
-Pedal      : 70 %
-Cut        : 200 ms
+Bank 3
+LC RPM : 4000
 
-BANK 4
-Launch RPM : 4500 RPM
-Speed      : 3 km/h
-RPM Thr.   : 5500 RPM
-Pedal      : 70 %
-Cut        : 200 ms
+Bank 4
+LC RPM : 4500
 ```
 
 Result:
 
 ```text
-Bank 1 → Normal MultiMap calibration
-Bank 2 → Launch Control @ 3500 RPM
-Bank 3 → Launch Control @ 4000 RPM
-Bank 4 → Launch Control @ 4500 RPM
+BANK 1 → Original MultiMap calibration / LC OFF
+BANK 2 → Launch Control @ 3500 RPM
+BANK 3 → Launch Control @ 4000 RPM
+BANK 4 → Launch Control @ 4500 RPM
 ```
 
-Generated files:
+---
+
+# ⚠️ Important
+
+This software modifies executable Bosch ME7.5 ECU firmware.
+
+Before flashing:
+
+- ✅ Keep a verified original ECU backup
+- ✅ Keep the original MultiMap BIN
+- ✅ Use the CSV generated for the exact MultiMap BIN
+- ✅ Check ECU identification
+- ✅ Check the generated XDF
+- ✅ Review the program log
+- ✅ Flash the checksum-corrected `_CSOK.bin`
+- ✅ Have a working ECU recovery / boot-mode method available
+
+Launch Control and ignition-cut strategies can increase mechanical and thermal stress on:
 
 ```text
-Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.bin
-
-Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP.xdf
-
-Golf_1.8T_K04_064_MULTIMAP_4BANK_LC_MULTIMAP_CSOK.bin
+Turbocharger
+Exhaust manifold
+Exhaust valves
+Catalytic converter
+Ignition system
+Clutch
+Transmission
+Drivetrain
 ```
+
+Use appropriate calibration knowledge.
+
+---
+
+# 🧪 Project Status
+
+| Feature | Status |
+|---|:---:|
+| PySide6 GUI | ✅ |
+| ME7Check integration | ✅ |
+| Automatic ME7Info generation | ✅ |
+| MultiMap CSV validation | ✅ |
+| 1 MB ME7.5 support | ✅ |
+| Selective LC banks | ✅ |
+| Per-bank Launch RPM | ✅ |
+| Per-bank configuration | ✅ |
+| Clutch activation | ✅ |
+| MultiMap CALLS preservation | ✅ |
+| Existing LC detection | ✅ |
+| XDF generation | ✅ |
+| me7sum integration | ✅ |
+| Final CSOK BIN | ✅ |
+| System log | ✅ |
 
 ---
 
@@ -859,13 +678,11 @@ Built around the Bosch **ME7 / ME7.5** community knowledge and open-source tooli
 
 Special thanks to the developers and researchers behind:
 
-```text
-ME7Check
-ME7Info
-ME7Sum
-Setzi / ME7 Launch Control research
-Bosch ME7 community documentation
-```
+- ME7Check
+- ME7Info
+- ME7Sum
+- Setzi Launch Control research
+- Bosch ME7 community documentation
 
 and everyone contributing knowledge about Bosch ME7 / ME7.5 firmware.
 
@@ -877,23 +694,20 @@ and everyone contributing knowledge about Bosch ME7 / ME7.5 firmware.
 
 ```text
 BANK 1 → STOCK / LC OFF
-
 BANK 2 → PERFORMANCE / LC 3500
-
 BANK 3 → PERFORMANCE / LC 4000
-
 BANK 4 → CUSTOM / LC 4500
 ```
 
-**Switch bank. Select calibration. Launch.**
+**Select bank. Select calibration. Launch.**
 
 ---
 
 # 🔗 GitHub
 
-Project repository:
+Repository:
 
-**https://github.com/LDRXN/Bosch-ME7.5-MultiMap-LC-Patcher-**
+https://github.com/LDRXN/Bosch-ME7.5-MultiMap-LC-Patcher-
 
 Author:
 
@@ -903,67 +717,55 @@ Author:
 
 # 📜 License
 
-Open Source.
-
 Copyright © 2026 **LDRXN**
 
 This software is free and open-source software distributed under the terms of the **GNU General Public License version 3 (GNU GPL v3)**.
 
-Every user is permitted to:
+You are permitted to:
 
-- use the software free of charge for private and commercial purposes;
-- copy and redistribute the original software;
-- access the source code;
-- study and modify the source code;
-- create modified versions of the software;
-- distribute modified versions of the software.
+- use the software for private and commercial purposes
+- copy and redistribute the software
+- access the source code
+- study and modify the source code
+- create modified versions
+- distribute modified versions under the terms of GNU GPL v3
 
-When publicly distributing a modified version of the software, the applicable copyright and license notices must be preserved and the corresponding source code must be made available under the terms of the GNU GPL v3.
+When publicly distributing a modified version, the applicable copyright and license notices must be preserved and the corresponding source code must remain available under the terms of GNU GPL v3.
 
-The software is provided **“AS IS”**, without warranty, to the extent permitted by applicable law.
-
-LDRXN provides no warranty regarding the software's fitness for a particular purpose or error-free operation.
-
-The complete GNU General Public License version 3 supplied with the repository constitutes the applicable license terms.
+The software is provided **"AS IS"**, without warranty.
 
 ---
 
 <h2 align="center">❤️ Want to say thank you?</h2>
 
 <p align="center">
-If this project helped you and you would like to show your appreciation,<br>
-<strong>there is no need to support me financially.</strong>
+If this project helped you, there is no need to support me financially.
 </p>
 
 <p align="center">
-Instead, if you are willing and able, please consider supporting organizations<br>
-that help children and people fighting serious illnesses.
+Instead, please consider supporting organizations that help children and people fighting serious illnesses.
 </p>
 
 <table align="center">
 <tr>
-
 <td align="center">
 
 <a href="https://www.siepomaga.pl/">
-<img src="https://img.shields.io/badge/SUPPORT-SIEPOMAGA.PL-ff4f81?style=for-the-badge" alt="Support Siepomaga.pl">
+<img src="https://img.shields.io/badge/SUPPORT-SIEPOMAGA.PL-ff4f81?style=for-the-badge">
 </a>
 
 </td>
-
 <td align="center">
 
 <a href="https://cancerfighters.pl/">
-<img src="https://img.shields.io/badge/SUPPORT-CANCER%20FIGHTERS-e30613?style=for-the-badge" alt="Support Cancer Fighters">
+<img src="https://img.shields.io/badge/SUPPORT-CANCER%20FIGHTERS-e30613?style=for-the-badge">
 </a>
 
 </td>
-
 </tr>
 </table>
 
 <p align="center">
 <strong>Thank you for using my project. ❤️</strong><br><br>
-If it helped you, consider helping someone who truly needs it.<br>
-Even a small contribution can make a meaningful difference.
+If it helped you, consider helping someone who truly needs it.
 </p>
