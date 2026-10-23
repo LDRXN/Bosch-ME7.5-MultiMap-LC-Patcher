@@ -1,0 +1,2324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LaunchMainWindow</class>
+ <widget class="QMainWindow" name="LaunchMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1040</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>620</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>ME7.5 MultiMap Selective Launch Control</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+QMainWindow, QWidget#centralWidget, QWidget#setupContent, QWidget#logContent {
+    background: #f5f7fa; color: #20242a;
+    font-family: "Segoe UI", "Inter", "DejaVu Sans", Arial;
+    font-size: 10pt;
+}
+QWidget { color: #20242a; }
+QLabel { background: transparent; border: none; }
+QLabel#titleLabel { color: #3584e4; font-size: 24pt; font-weight: 800; }
+QLabel#subtitleLabel { color: #7a818b; font-size: 8pt; font-weight: 700; }
+QLabel#ecuBadgeLabel, QLabel#sizeBadgeLabel, QLabel#cutBadgeLabel {
+    border-radius: 7px; padding: 5px 10px; font-size: 8.5pt; font-weight: 800;
+}
+QLabel#ecuBadgeLabel { color: #0969da; background: #eaf4ff; border: 1px solid #b6d8ff; }
+QLabel#sizeBadgeLabel { color: #1a7f37; background: #eaf8ee; border: 1px solid #b7e2c2; }
+QLabel#cutBadgeLabel { color: #b9382d; background: #fff0ed; border: 1px solid #efc0ba; }
+QTabWidget::pane { border: none; }
+QTabWidget::tab-bar { left: 0px; }
+QTabBar::tab {
+    background: transparent; color: #7a818b; border: none;
+    border-bottom: 2px solid transparent; padding: 9px 15px; font-weight: 700;
+    margin-right: 10px; margin-bottom: 6px;
+}
+QTabBar::tab:selected { color: #0969da; border-bottom: 2px solid #0969da; }
+QTabBar::tab:hover { color: #0969da; background: #eaf4ff; }
+QScrollArea { background: transparent; border: none; }
+QFrame#fileFrame, QFrame#infoFrame, QFrame#logFrame {
+    background: #ffffff; border: 1px solid #d9dee5; border-radius: 13px;
+}
+QFrame#lcFrame { background: #ffffff; border: 1px solid #cbdff0; border-radius: 13px; }
+QLabel[role="sectionTitle"] { color: #20242a; font-size: 13pt; font-weight: 800; }
+QLabel[role="muted"] { color: #7a818b; font-size: 8.7pt; }
+QLabel[role="fieldLabel"] { color: #59636e; font-size: 9pt; font-weight: 700; }
+QLabel[role="columnLabel"] { color: #0969da; font-size: 8.5pt; font-weight: 800; }
+QLabel#mmStatusLabel { color: #0969da; font-size: 8.6pt; font-weight: 700; }
+QLabel#selectionLabel { color: #0969da; font-size: 8.7pt; font-weight: 700; }
+QLineEdit {
+    min-height: 32px; color: #24292f; background: #f8fafc;
+    border: 1px solid #d0d7de; border-radius: 7px; padding: 0 9px;
+    selection-background-color: #54aeff;
+}
+QLineEdit:focus { background: #ffffff; border-color: #218bff; }
+QLineEdit:disabled { color: #a1a8b0; background: #f4f5f7; border-color: #e3e7ec; }
+QLineEdit[invalid="true"] { background: #fff7f5; border-color: #cf3b2e; }
+QPushButton {
+    min-height: 32px; color: #44515d; background: #ffffff;
+    border: 1px solid #cfd5dc; border-radius: 7px;
+    padding: 0 13px; font-weight: 700;
+}
+QPushButton:hover { background: #f0f6fc; border-color: #78b9ec; color: #075aab; }
+QPushButton:pressed { background: #e3effb; }
+QPushButton:focus { border-color: #218bff; }
+QPushButton#browseBinButton, QPushButton#patchButton {
+    color: #ffffff; background: #0969da; border-color: #0969da;
+}
+QPushButton#browseBinButton:hover, QPushButton#patchButton:hover { background: #0860ca; }
+QPushButton#browseBinButton:pressed, QPushButton#patchButton:pressed { background: #0757ba; }
+QPushButton#patchButton { min-height: 44px; border-radius: 9px; font-size: 10.5pt; padding: 0 22px; }
+QPushButton[role="bank"] {
+    color: #44515d; background: #f4f9fd; border-color: #c8dceb;
+    padding: 0 12px; text-align: left;
+}
+QPushButton[role="bank"]:hover { background: #eaf5ff; border-color: #78b9ec; }
+QPushButton[role="bank"]:checked { color: #ffffff; background: #0969da; border-color: #0969da; }
+QPushButton:disabled, QPushButton[role="bank"]:disabled, QPushButton#patchButton:disabled,
+QPushButton#browseBinButton:disabled {
+    color: #9da3aa; background: #e8eaed; border-color: #d8dce1;
+}
+QLabel#lcDescriptionLabel {
+    color: #59636e; background: #f6fbff; border: 1px solid #d5e7f5;
+    border-radius: 8px; padding: 8px 11px; font-size: 8.8pt;
+}
+QLabel[role="ecuLabel"] { color: #7a818b; font-size: 8.4pt; }
+QLabel[role="ecuValue"] { color: #20242a; font-size: 10pt; font-weight: 700; }
+QPlainTextEdit {
+    color: #344253; background: #f8fafc; border: 1px solid #e3e8ee;
+    border-radius: 8px; padding: 8px; font-family: "DejaVu Sans Mono", Consolas, monospace;
+    font-size: 8.8pt; selection-background-color: #b6d8ff;
+}
+QFrame#actionFrame { background: transparent; border: none; }
+QFrame#resultFrame { background: #eaf8ee; border: 1px solid #b7e2c2; border-radius: 8px; }
+QLabel#resultLabel { color: #1a7f37; font-size: 8.8pt; font-weight: 700; }
+QProgressBar { min-height: 5px; max-height: 5px; background: #dce1e6; border: none; border-radius: 2px; }
+QProgressBar::chunk { background: #218bff; border-radius: 2px; }
+QFrame#footerFrame { background: transparent; border-top: 1px solid #d8dde3; }
+QLabel#statusLabel { color: #59636e; font-size: 8.7pt; }
+QLabel#stateLabel { color: #0969da; font-size: 8.7pt; font-weight: 800; }
+QScrollBar:vertical { background: #edf0f4; width: 8px; border: none; margin: 0; }
+QScrollBar::handle:vertical { background: #c4cdd8; min-height: 25px; border-radius: 4px; }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }
+QToolTip { background: #ffffff; color: #24292f; border: 1px solid #c9d0d7; padding: 6px; }
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <item alignment="Qt::AlignLeft">
+     <widget class="QWidget" name="githubLinkWidget">
+      <layout class="QHBoxLayout" name="githubLinkLayout">
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="githubIconLabel">
+         <property name="minimumSize">
+          <size>
+           <width>18</width>
+           <height>18</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>18</width>
+           <height>18</height>
+          </size>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="githubLinkLabel">
+         <property name="text">
+          <string>&lt;a href="https://github.com/LDRXN" style="color:#24292f; text-decoration:none;"&gt;GitHub&lt;/a&gt;</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextBrowserInteraction</set>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+         <property name="toolTip">
+          <string>Open LDRXN on GitHub</string>
+         </property>
+         <property name="styleSheet">
+          <string>QLabel {font-family:'Segoe UI Variable','Segoe UI',Arial;font-size:10pt;font-weight:600;background:transparent;}</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="headerFrame">
+      <layout class="QHBoxLayout" name="headerLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>14</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="headingWidget">
+         <layout class="QVBoxLayout" name="headingLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="titleLabel">
+            <property name="text">
+             <string>ME7.5 Launch Control</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="subtitleLabel">
+            <property name="text">
+             <string>S E L E C T I V E   M U L T I M A P   •   A D V A N C E D   E C U   C A L I B R A T I O N</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer0">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>8</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="ecuBadgeLabel">
+         <property name="text">
+          <string>ME7.5</string>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="sizeBadgeLabel">
+         <property name="text">
+          <string>1 MB</string>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="cutBadgeLabel">
+         <property name="text">
+          <string>HARD CUT</string>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="mainTabs">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="setupTab">
+       <attribute name="title">
+        <string>Launch Control</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="setupPageLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="setupScrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <widget class="QWidget" name="setupContent">
+           <layout class="QVBoxLayout" name="setupContentLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>12</number>
+            </property>
+            <property name="rightMargin">
+             <number>3</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="fileFrame">
+              <layout class="QVBoxLayout" name="fileLayout">
+               <property name="leftMargin">
+                <number>15</number>
+               </property>
+               <property name="topMargin">
+                <number>15</number>
+               </property>
+               <property name="rightMargin">
+                <number>15</number>
+               </property>
+               <property name="bottomMargin">
+                <number>15</number>
+               </property>
+               <property name="spacing">
+                <number>8</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="fileHeadingLayout">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="fileTitleLabel">
+                   <property name="text">
+                    <string>◆  Project files</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>sectionTitle</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="spacer1">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint">
+                    <size>
+                     <width>8</width>
+                     <height>8</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="fileHintLabel">
+                   <property name="text">
+                    <string>MultiMap BIN + matching CSV log</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>muted</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="fileGrid" columnstretch="0,1,0">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>7</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="binPathEditLabel">
+                   <property name="text">
+                    <string>BIN file</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>fieldLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="binPathEdit">
+                   <property name="placeholderText">
+                    <string>Select the 1 MB MultiMap BIN…</string>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QPushButton" name="browseBinButton">
+                   <property name="text">
+                    <string>Browse…</string>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>105</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="csvPathEditLabel">
+                   <property name="text">
+                    <string>CSV log</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>fieldLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="csvPathEdit">
+                   <property name="placeholderText">
+                    <string>Select the log generated by MultiMap Builder…</string>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="browseCsvButton">
+                   <property name="text">
+                    <string>Browse…</string>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>105</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="toolsStatusLabel">
+                 <property name="text">
+                  <string>ECU definition and checksums are generated automatically.</string>
+                 </property>
+                 <property name="role" stdset="0">
+                  <string>muted</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="lcFrame">
+              <layout class="QVBoxLayout" name="lcLayout">
+               <property name="leftMargin">
+                <number>15</number>
+               </property>
+               <property name="topMargin">
+                <number>15</number>
+               </property>
+               <property name="rightMargin">
+                <number>15</number>
+               </property>
+               <property name="bottomMargin">
+                <number>15</number>
+               </property>
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="lcHeadingLayout">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lcTitleLabel">
+                   <property name="text">
+                    <string>⇄  Launch Control per bank</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>sectionTitle</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="spacer2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint">
+                    <size>
+                     <width>8</width>
+                     <height>8</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="selectionLabel">
+                   <property name="text">
+                    <string>3 banks enabled</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="mmStatusLabel">
+                 <property name="text">
+                  <string>Load a MultiMap CSV to unlock the available banks.</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="banksWidget">
+                 <layout class="QGridLayout" name="bankGrid" columnstretch="0,1,1,1,1,1,1">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="spacing">
+                   <number>7</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="bankHeader0">
+                    <property name="text">
+                     <string>ACTIVE BANK</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="bankHeader1">
+                    <property name="text">
+                     <string>LAUNCH RPM</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="bankHeader2">
+                    <property name="text">
+                     <string>SPEED km/h</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QLabel" name="bankHeader3">
+                    <property name="text">
+                     <string>RPM THRESHOLD</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <widget class="QLabel" name="bankHeader4">
+                    <property name="text">
+                     <string>PEDAL %</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="5">
+                   <widget class="QLabel" name="bankHeader5">
+                    <property name="text">
+                     <string>CUT ms</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="6">
+                   <widget class="QLabel" name="bankHeader6">
+                    <property name="text">
+                     <string>TEMP °C</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>columnLabel</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QPushButton" name="bank1Button">
+                    <property name="text">
+                     <string>Bank 1  ·  ORI</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>bank</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>128</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Enable or disable Launch Control for bank 1.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="bank1_launchEdit">
+                    <property name="text">
+                     <string>3000</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Launch Control RPM for this bank.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: LAUNCH RPM</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLineEdit" name="bank1_speedEdit">
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Vehicle speed threshold, in km/h.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: SPEED km/h</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLineEdit" name="bank1_rpmEdit">
+                    <property name="text">
+                     <string>5500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>RPM threshold used by the original LC / NLS routine.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: RPM THRESHOLD</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="4">
+                   <widget class="QLineEdit" name="bank1_pedalEdit">
+                    <property name="text">
+                     <string>70</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Accelerator pedal threshold, in percent.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: PEDAL %</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="5">
+                   <widget class="QLineEdit" name="bank1_cutEdit">
+                    <property name="text">
+                     <string>200</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Ignition cut duration, in ms. Must be a multiple of 20.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: CUT ms</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="6">
+                   <widget class="QLineEdit" name="bank1_tempEdit">
+                    <property name="text">
+                     <string>75</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Temperature value stored in the bank configuration. The original runtime logic is unchanged.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 1: TEMP °C</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QPushButton" name="bank2Button">
+                    <property name="text">
+                     <string>Bank 2  ·  LC ON</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>bank</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>128</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Enable or disable Launch Control for bank 2.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="bank2_launchEdit">
+                    <property name="text">
+                     <string>3500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Launch Control RPM for this bank.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: LAUNCH RPM</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLineEdit" name="bank2_speedEdit">
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Vehicle speed threshold, in km/h.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: SPEED km/h</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLineEdit" name="bank2_rpmEdit">
+                    <property name="text">
+                     <string>5500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>RPM threshold used by the original LC / NLS routine.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: RPM THRESHOLD</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="4">
+                   <widget class="QLineEdit" name="bank2_pedalEdit">
+                    <property name="text">
+                     <string>70</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Accelerator pedal threshold, in percent.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: PEDAL %</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="5">
+                   <widget class="QLineEdit" name="bank2_cutEdit">
+                    <property name="text">
+                     <string>200</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Ignition cut duration, in ms. Must be a multiple of 20.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: CUT ms</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="6">
+                   <widget class="QLineEdit" name="bank2_tempEdit">
+                    <property name="text">
+                     <string>75</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Temperature value stored in the bank configuration. The original runtime logic is unchanged.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 2: TEMP °C</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QPushButton" name="bank3Button">
+                    <property name="text">
+                     <string>Bank 3  ·  LC ON</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>bank</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>128</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Enable or disable Launch Control for bank 3.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="bank3_launchEdit">
+                    <property name="text">
+                     <string>4000</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Launch Control RPM for this bank.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: LAUNCH RPM</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QLineEdit" name="bank3_speedEdit">
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Vehicle speed threshold, in km/h.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: SPEED km/h</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="3">
+                   <widget class="QLineEdit" name="bank3_rpmEdit">
+                    <property name="text">
+                     <string>5500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>RPM threshold used by the original LC / NLS routine.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: RPM THRESHOLD</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="4">
+                   <widget class="QLineEdit" name="bank3_pedalEdit">
+                    <property name="text">
+                     <string>70</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Accelerator pedal threshold, in percent.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: PEDAL %</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="5">
+                   <widget class="QLineEdit" name="bank3_cutEdit">
+                    <property name="text">
+                     <string>200</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Ignition cut duration, in ms. Must be a multiple of 20.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: CUT ms</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="6">
+                   <widget class="QLineEdit" name="bank3_tempEdit">
+                    <property name="text">
+                     <string>75</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Temperature value stored in the bank configuration. The original runtime logic is unchanged.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 3: TEMP °C</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QPushButton" name="bank4Button">
+                    <property name="text">
+                     <string>Bank 4  ·  LC ON</string>
+                    </property>
+                    <property name="role" stdset="0">
+                     <string>bank</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>128</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Enable or disable Launch Control for bank 4.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="bank4_launchEdit">
+                    <property name="text">
+                     <string>4500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Launch Control RPM for this bank.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: LAUNCH RPM</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QLineEdit" name="bank4_speedEdit">
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Vehicle speed threshold, in km/h.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: SPEED km/h</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="3">
+                   <widget class="QLineEdit" name="bank4_rpmEdit">
+                    <property name="text">
+                     <string>5500</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>RPM threshold used by the original LC / NLS routine.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: RPM THRESHOLD</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="4">
+                   <widget class="QLineEdit" name="bank4_pedalEdit">
+                    <property name="text">
+                     <string>70</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Accelerator pedal threshold, in percent.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: PEDAL %</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="5">
+                   <widget class="QLineEdit" name="bank4_cutEdit">
+                    <property name="text">
+                     <string>200</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Ignition cut duration, in ms. Must be a multiple of 20.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: CUT ms</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="6">
+                   <widget class="QLineEdit" name="bank4_tempEdit">
+                    <property name="text">
+                     <string>75</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Temperature value stored in the bank configuration. The original runtime logic is unchanged.</string>
+                    </property>
+                    <property name="accessibleName">
+                     <string>Bank 4: TEMP °C</string>
+                    </property>
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lcDescriptionLabel">
+                 <property name="text">
+                  <string>Blue banks = LC enabled · Click a bank to toggle it · Clutch activation · Hard Cut</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="spacer3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="logTab">
+       <attribute name="title">
+        <string>ECU info / process log</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="logPageLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="logScrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <widget class="QWidget" name="logContent">
+           <layout class="QVBoxLayout" name="logContentLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>12</number>
+            </property>
+            <property name="rightMargin">
+             <number>3</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="infoFrame">
+              <layout class="QVBoxLayout" name="infoLayout">
+               <property name="leftMargin">
+                <number>15</number>
+               </property>
+               <property name="topMargin">
+                <number>15</number>
+               </property>
+               <property name="rightMargin">
+                <number>15</number>
+               </property>
+               <property name="bottomMargin">
+                <number>15</number>
+               </property>
+               <property name="spacing">
+                <number>12</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="infoHeadingLayout">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="infoTitleLabel">
+                   <property name="text">
+                    <string>◆  ECU identification</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>sectionTitle</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="spacer4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint">
+                    <size>
+                     <width>8</width>
+                     <height>8</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="infoSourceLabel">
+                   <property name="text">
+                    <string>ME7Check · no BIN analyzed</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>muted</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="infoGrid" columnstretch="1,1,1,1">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QWidget" name="boschEcuCell">
+                   <layout class="QVBoxLayout" name="boschEcuLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="boschEcuLabel">
+                      <property name="text">
+                       <string>BOSCH ECU</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="boschEcuValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QWidget" name="boschSwCell">
+                   <layout class="QVBoxLayout" name="boschSwLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="boschSwLabel">
+                      <property name="text">
+                       <string>BOSCH SOFTWARE</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="boschSwValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QWidget" name="vagPartCell">
+                   <layout class="QVBoxLayout" name="vagPartLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="vagPartLabel">
+                      <property name="text">
+                       <string>VAG PART NUMBER</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="vagPartValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QWidget" name="vagSwCell">
+                   <layout class="QVBoxLayout" name="vagSwLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="vagSwLabel">
+                      <property name="text">
+                       <string>VAG SOFTWARE</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="vagSwValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QWidget" name="engineCell">
+                   <layout class="QVBoxLayout" name="engineLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="engineLabel">
+                      <property name="text">
+                       <string>ENGINE</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="engineValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QWidget" name="bootromCell">
+                   <layout class="QVBoxLayout" name="bootromLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="bootromLabel">
+                      <property name="text">
+                       <string>BOOTROM</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="bootromValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QWidget" name="checksumsCell">
+                   <layout class="QVBoxLayout" name="checksumsLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="checksumsLabel">
+                      <property name="text">
+                       <string>CHECKSUMS</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="checksumsValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="2" column="0" colspan="4">
+                  <widget class="QWidget" name="epkCell">
+                   <layout class="QVBoxLayout" name="epkLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="epkLabel">
+                      <property name="text">
+                       <string>EPK</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="epkValue">
+                      <property name="text">
+                       <string>—</string>
+                      </property>
+                      <property name="role" stdset="0">
+                       <string>ecuValue</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::PlainText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="logFrame">
+              <layout class="QVBoxLayout" name="logLayout">
+               <property name="leftMargin">
+                <number>15</number>
+               </property>
+               <property name="topMargin">
+                <number>15</number>
+               </property>
+               <property name="rightMargin">
+                <number>15</number>
+               </property>
+               <property name="bottomMargin">
+                <number>15</number>
+               </property>
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="logHeadingLayout">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="logTitleLabel">
+                   <property name="text">
+                    <string>Process log</string>
+                   </property>
+                   <property name="role" stdset="0">
+                    <string>sectionTitle</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="spacer5">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint">
+                    <size>
+                     <width>8</width>
+                     <height>8</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="analyzeButton">
+                   <property name="text">
+                    <string>Analyze BIN</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="copyLogButton">
+                   <property name="text">
+                    <string>Copy log</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="clearLogButton">
+                   <property name="text">
+                    <string>Clear</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="logText">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="placeholderText">
+                  <string>ME7Check output and the complete patching process will appear here.</string>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>170</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="spacer6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="actionFrame">
+      <layout class="QHBoxLayout" name="actionLayout" stretch="1,0,0">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>12</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="actionDescription">
+         <layout class="QVBoxLayout" name="actionDescriptionLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="actionTitleLabel">
+            <property name="text">
+             <string>Generate Launch Control firmware</string>
+            </property>
+            <property name="role" stdset="0">
+             <string>fieldLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="pipelineLabel">
+            <property name="text">
+             <string>ME7Check → Auto ECU → LC patch → XDF → ME7Sum → Final check</string>
+            </property>
+            <property name="role" stdset="0">
+             <string>muted</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>8</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="patchButton">
+         <property name="text">
+          <string>PATCH &amp;&amp; GENERATE CSOK BIN</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>290</width>
+           <height>44</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="resultFrame">
+      <layout class="QHBoxLayout" name="resultLayout" stretch="1,0,0">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="resultLabel">
+         <property name="text">
+          <string>No output generated yet.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>8</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="openOutputButton">
+         <property name="text">
+          <string>Open folder</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="footerFrame">
+      <layout class="QHBoxLayout" name="footerLayout" stretch="1,0,0">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="statusLabel">
+         <property name="text">
+          <string>Select a MultiMap BIN and its CSV log.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>8</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="stateLabel">
+         <property name="text">
+          <string>READY</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources />
+ <connections />
+</ui>
