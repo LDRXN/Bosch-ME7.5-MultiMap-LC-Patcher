@@ -1,12 +1,5 @@
 # 🚀 Bosch ME7.5 MultiMap LC Patcher
 
-# 🖥️ Linux & Windows Versions
-
-Choose the Python script for your operating system:
-
-- 🐧 **Linux (Wine):** `Launch_MultiMap_Selective_GUI_FINAL_v3.py`
-- 🪟 **Windows (native, no Wine required):** `Launch_MultiMap_Selective_GUI_WINDOWS.py`
-
 
 <p align="center">
   <strong>Selective Launch Control for Bosch ME7.5 MultiMap / MapSwitch firmware</strong>
@@ -25,6 +18,14 @@ Choose the Python script for your operating system:
 
 </p>
 
+
+---
+# 🖥️ Linux & Windows Versions
+
+Choose the Python script for your operating system:
+
+- 🐧 **Linux (Wine):** `Launch_MultiMap_Selective_GUI_FINAL_v3.py`
+- 🪟 **Windows (native, no Wine required):** `Launch_MultiMap_Selective_GUI_WINDOWS.py`
 ---
 
 ## 📖 About
